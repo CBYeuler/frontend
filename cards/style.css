@@ -1,0 +1,48 @@
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f4f4f5; /* soft neutral background */
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+#cardBody {
+    background: #ffffff;
+    padding: 24px;
+    border-radius: 16px;
+    width: 300px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+
+    /* modern soft shadow instead of border */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+
+    /* smooth hover animation */
+    transition: all 0.25s ease;
+}
+
+#cardBody:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 14px 35px rgba(0, 0, 0, 0.12);
+}
+
+li {
+    list-style: none;
+    color: #333;
+}
+
+#card-btn{
+    padding: 10px;
+    border: #f4f4f5;
+    border-radius: 10%;
+    transition: all 0.25s ease;
+}
+#card-btn:hover{
+    transform: translateY(-5px);
+    box-shadow: 0 14px 35px rgba(0, 0, 0, 0.12);
+}
