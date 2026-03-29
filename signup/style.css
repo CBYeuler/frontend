@@ -1,0 +1,282 @@
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Quicksand', sans-serif;
+        }
+ 
+        /* Preserve focus for keyboard users, just style it nicely */
+        :focus-visible {
+            outline: 2px solid #3aaf9f;
+            outline-offset: 2px;
+        }
+ 
+        html { font-size: 62.5%; }
+ 
+        body {
+            background: #f0f4f3;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+ 
+        .container {
+            width: 100rem;
+            height: 70rem;
+            position: relative;
+            border-radius: 3rem;
+            box-shadow: 0 2rem 6rem rgba(0, 0, 0, 0.18);
+            overflow: hidden;
+            background: #eee;
+        }
+ 
+        /* ── Sliding green panel ─────────────────────── */
+        .green-bg {
+            width: 40%;
+            height: 100%;
+            background: linear-gradient(135deg, #2d9e8f 0%, #4cbfa8 60%, #6dd5c2 100%);
+            position: absolute;
+            top: 0;
+            left: 60%;
+            z-index: 50;
+            transition: left 1.5s cubic-bezier(0.19, 1, 0.22, 1);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 2.5rem;
+            text-align: center;
+            padding: 4rem;
+        }
+ 
+        .container.change .green-bg {
+            left: 0;
+        }
+ 
+        .green-bg::before {
+            content: '';
+            position: absolute;
+            width: 28rem;
+            height: 28rem;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.07);
+            top: -8rem;
+            right: -8rem;
+        }
+ 
+        .green-bg::after {
+            content: '';
+            position: absolute;
+            width: 20rem;
+            height: 20rem;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.07);
+            bottom: -6rem;
+            left: -6rem;
+        }
+ 
+        .banner {
+            color: #fff;
+            z-index: 1;
+        }
+ 
+        .banner h1 {
+            font-size: 3.6rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.05rem;
+        }
+ 
+        .banner p {
+            font-size: 1.6rem;
+            opacity: 0.88;
+            line-height: 1.6;
+        }
+ 
+        .green-bg button {
+            z-index: 1;
+            width: 16rem;
+            height: 5rem;
+            background-color: transparent;
+            border: 0.15rem solid rgba(255,255,255,0.8);
+            border-radius: 3rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15rem;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #fff;
+            cursor: pointer;
+            transition: background 0.25s, border-color 0.25s, transform 0.15s;
+        }
+ 
+        .green-bg button:hover {
+            background: rgba(255,255,255,0.18);
+            border-color: #fff;
+            transform: translateY(-2px);
+        }
+ 
+        .green-bg button:active { transform: translateY(0); }
+ 
+        /* ── Forms shared layout ─────────────────────── */
+        .form-panel {
+            width: 60%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            padding: 5rem 4rem;
+            background: #fff;
+            transition: left 1.5s cubic-bezier(0.19, 1, 0.22, 1),
+                        opacity 0.6s ease;
+        }
+ 
+        /* Signup: starts left, login: starts right (hidden) */
+        .signup-form {
+            left: 0;
+            opacity: 1;
+        }
+ 
+        .login-form {
+            left: 40%; /* behind the green panel */
+            opacity: 0;
+            pointer-events: none;
+        }
+ 
+        .container.change .signup-form {
+            left: 40%;
+            opacity: 0;
+            pointer-events: none;
+        }
+ 
+        .container.change .login-form {
+            left: 40%;
+            opacity: 1;
+            pointer-events: all;
+        }
+ 
+        .form-panel h1 {
+            font-size: 3.4rem;
+            font-weight: 700;
+            color: #2d9e8f;
+            letter-spacing: -0.05rem;
+        }
+ 
+        /* ── Social icons ────────────────────────────── */
+        .social-media {
+            display: flex;
+            gap: 1.2rem;
+        }
+ 
+        .social-media a {
+            width: 4.2rem;
+            height: 4.2rem;
+            border: 0.15rem solid #d0ece8;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.6rem;
+            color: #3aaf9f;
+            text-decoration: none;
+            transition: background 0.2s, border-color 0.2s, color 0.2s, transform 0.15s;
+        }
+ 
+        .social-media a:hover {
+            background: #3aaf9f;
+            border-color: #3aaf9f;
+            color: #fff;
+            transform: translateY(-3px);
+        }
+ 
+        .divider {
+            font-size: 1.4rem;
+            color: #aaa;
+            letter-spacing: 0.03rem;
+        }
+ 
+        /* ── Input groups ────────────────────────────── */
+        .inputs {
+            display: flex;
+            flex-direction: column;
+            gap: 1.4rem;
+            width: 30rem;
+        }
+ 
+        .input-group {
+            position: relative;
+        }
+ 
+        .input-group i {
+            position: absolute;
+            top: 50%;
+            left: 1.4rem;
+            transform: translateY(-50%);
+            font-size: 1.3rem;
+            color: #aaa;
+            transition: color 0.2s;
+            pointer-events: none;
+        }
+ 
+        .input-group input {
+            width: 100%;
+            height: 5rem;
+            padding: 1rem 1rem 1rem 3.6rem;
+            background-color: #f4f8f7;
+            border: 0.15rem solid #e0eeeb;
+            border-radius: 1rem;
+            font-size: 1.5rem;
+            color: #333;
+            transition: border-color 0.2s, background 0.2s;
+        }
+ 
+        .input-group input::placeholder { color: #bbb; }
+ 
+        .input-group input:focus {
+            border-color: #3aaf9f;
+            background: #fff;
+        }
+ 
+        .input-group input:focus + i,
+        .input-group:focus-within i {
+            color: #3aaf9f;
+        }
+ 
+        /* icon is after input in DOM so we use :focus-within on parent */
+ 
+        /* ── Submit button ───────────────────────────── */
+        .form-panel .submit-btn {
+            width: 18rem;
+            height: 5rem;
+            background: linear-gradient(135deg, #2d9e8f, #4cbfa8);
+            border: none;
+            border-radius: 3rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15rem;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #fff;
+            cursor: pointer;
+            box-shadow: 0 0.6rem 1.8rem rgba(58, 175, 159, 0.35);
+            transition: transform 0.15s, box-shadow 0.2s;
+        }
+ 
+        .form-panel .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 1rem 2.4rem rgba(58, 175, 159, 0.45);
+        }
+ 
+        .form-panel .submit-btn:active { transform: translateY(0); }
+ 
+        /* ── Forgot password link ────────────────────── */
+        .forgot {
+            font-size: 1.3rem;
+            color: #aaa;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .forgot:hover { color: #3aaf9f; }
